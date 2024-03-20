@@ -72,6 +72,11 @@ token_url = https://zitadel-build.hungry-howard.com/oauth/v2/token
 api_url = https://zitadel-build.hungry-howard.com/oidc/v1/userinfo 
 use_pkce = true
 ```
+
+Set role for SSO user/s add this line to the Grafana Config file. This would make the user a admin.
+```
+role_attribute_path = contains('"user-roles[*]"', 'monitoring') && 'Editor' || 'admin'
+```
 Zitadel confgiuration
 
 Create a project  Grafana
@@ -81,12 +86,22 @@ create an Application  Web OIDC PKCE Use a random hash instead of a static clien
 
 Token Settings
 
-For  token Option  enable Auth Token Type JWT and check the tic box called ```User Info inside ID Token```.
+For  token Option  enable Auth Token Type "JWT" and check the tic box called ```User Info inside ID Token```.
 
 Redirect
 https://grafana.hungry-howard.com/login/generic_oauth
 Post logout
 https://grafana.hungry-howard.com/logout
+
+The Grafana Project settings
+Check the tic box called "Assert Roles on Authentication"
+
+Add roles "admin".
+Grant  ORG to Grafana project
+For authorizations select the users needed.
+
+
+
 
 
 
