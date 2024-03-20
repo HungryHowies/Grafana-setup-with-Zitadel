@@ -9,7 +9,8 @@ wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt
 
 echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 
-(optional) If need be  add Beta release
+(optional) If need be  add Beta release.
+
 echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com beta main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 
 apt update
@@ -19,104 +20,32 @@ sudo systemctl daemon-reload
 sudo systemctl start grafana-server
 sudo systemctl status grafana-server
 
+
+Edit  nginx default site file 
+```
+vi /etc/nginx/sites-available
+```
+```
+server {
+    listen 80;
+    server_name grafana.hungry-howard.com;
+
+    location / {
+        proxy_pass http://localhost:3000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+
 apt install nginx
-
-/etc/grafana/grafana.ini 
-```
-root@grafana:/etc/grafana# grep -Ev ^'(;|#|$)' grafana.ini
-[paths]
-[server]
-protocol = https
-http_port = 3000
-domain = hungry-howard.com
-enforce_domain = false
-root_url = https://grafana.hungry-howard.com:3000
-cert_file = /etc/grafana/fullchain.pem
-cert_key = /etc/grafana/privkey.pem
-[server.custom_response_headers]
-[database]
-[datasources]
-[remote_cache]
-[dataproxy]
-[analytics]
-[security]
-[security.encryption]
-[snapshots]
-[dashboards]
-[users]
-[secretscan]
-[service_accounts]
-[auth]
-[auth.anonymous]
-[auth.github]
-[auth.gitlab]
-[auth.google]
-[auth.grafana_com]
-[auth.azuread]
-[auth.okta]
-[auth.generic_oauth]
-[auth.basic]
-[auth.proxy]
-[auth.jwt]
-[auth.ldap]
-[aws]
-[azure]
-[rbac]
-[smtp]
-[smtp.static_headers]
-[emails]
-[log]
-[log.console]
-[log.file]
-[log.syslog]
-[log.frontend]
-[quota]
-[unified_alerting]
-[unified_alerting.reserved_labels]
-[unified_alerting.state_history]
-[unified_alerting.state_history.external_labels]
-[unified_alerting.upgrade]
-[alerting]
-[annotations]
-[annotations.dashboard]
-[annotations.api]
-[explore]
-[help]
-[profile]
-[news]
-[query]
-[query_history]
-[metrics]
-[metrics.environment_info]
-[metrics.graphite]
-[grafana_com]
-[tracing.jaeger]
-[tracing.opentelemetry]
-[tracing.opentelemetry.jaeger]
-[tracing.opentelemetry.otlp]
-[external_image_storage]
-[external_image_storage.s3]
-[external_image_storage.webdav]
-[external_image_storage.gcs]
-[external_image_storage.azure_blob]
-[external_image_storage.local]
-[rendering]
-[panels]
-[plugins]
-[live]
-[plugin.grafana-image-renderer]
-[support_bundles]
-[enterprise]
-[feature_toggles]
-[date_formats]
-[expressions]
-[geomap]
-[navigation.app_sections]
-[navigation.app_standalone_pages]
-[secure_socks_datasource_proxy]
-[feature_management]
-[public_dashboards]
-```
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx
 
 
-sudo chown grafana:grafana fullchain.pem privkey.pem
+
+
+
+
