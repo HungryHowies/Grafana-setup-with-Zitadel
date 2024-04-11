@@ -1,24 +1,49 @@
-# grafana-setup
-Notes on installation and SSO connection
+# Grafana Setup
 
+This step documentation is a basic installation/configurations for Grafana. It will show the configuration needed for a OIDC connection.
+
+## Prerequisite:
+* Ubuntu-22.0.4
+* Updates/Upgrades Completed
+* Network Configured (Static address and DNS)
+* Date/Time is set
+* Zitadel-v2.47.0
+  
+
+```
 sudo apt-get install -y apt-transport-https software-properties-common wget
-
+```
+```
 sudo mkdir -p /etc/apt/keyrings/
-
+```
+```
 wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg > /dev/null
-
+```
+```
 echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+```
+
 
 (optional) If need be  add Beta release.
-
+```
 echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com beta main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+```
 
+```
 apt update
-
+```
+```
 sudo apt-get install grafana
+```
+```
 sudo systemctl daemon-reload
+```
+```
 sudo systemctl start grafana-server
+```
+```
 sudo systemctl status grafana-server
+```
 
 
 Edit  nginx default site file 
@@ -39,12 +64,18 @@ server {
 }
 ```
 
-
+```
 apt install nginx
+```
+```
 sudo apt install certbot python3-certbot-nginx
+```
+```
 sudo certbot --nginx
+```
 
-Edit Grafana config file.
+### Edit Grafana config file.
+
 ```
 [server]
 root_url = https://grafana.hungry-howard.com
@@ -75,31 +106,39 @@ use_pkce = true
 
 Set role for SSO user/s add this line to the Grafana Config file. This would make the user a admin.
 
-NOTE Need to check USers section settings  if it can tdo this also.
+*NOTE:* Need to check Users section settings if it can tdo this also.
 ```
 role_attribute_path = contains('"user-roles[*]"', 'monitoring') && 'Editor' || 'admin'
 ```
-Zitadel confgiuration
+## Zitadel confgiuration
 
 Create a project  Grafana
-create an Application  Web OIDC PKCE Use a random hash instead of a static client secret for more security
+
+create an Application Web OIDC PKCE Use a random hash instead of a static client secret for more security.
 
 ![image](https://github.com/HungryHowies/grafana-setup/assets/22652276/cdfcc538-5f7f-41d9-b114-fe907a3d9f3c)
 
-Token Settings
+### Token Settings
 
-For  token Option  enable Auth Token Type "JWT" and check the tic box called ```User Info inside ID Token```.
+For token Option enable Auth Token Type "JWT" and check the tic box called ```User Info inside ID Token```.
 
 Redirect
+```
 https://grafana.hungry-howard.com/login/generic_oauth
+```
 Post logout
+```
 https://grafana.hungry-howard.com/logout
+```
 
-The Grafana Project settings
+### The Grafana Project settings
+
 Check the tic box called "Assert Roles on Authentication"
-
+```
 Add roles "admin".
-Grant  ORG to Grafana project
+```
+Grant ORG to Grafana project
+
 For authorizations select the users needed.
 
 
