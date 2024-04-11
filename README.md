@@ -7,7 +7,7 @@ This step documentation is a basic installation/configurations for Grafana. It w
 * Updates/Upgrades Completed
 * Network Configured (Static address and DNS)
 * Date/Time is set
-* Zitadel-v2.47.0
+* Zitadel Instance
   
 
 ```
