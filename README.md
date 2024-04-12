@@ -71,7 +71,7 @@ Configure the default site file as shown below.
 ```
 server {
     listen 80;
-    server_name grafana.hungry-howard.com;
+    server_name grafana.domain.com;
 
     location / {
         proxy_pass http://localhost:3000/;
@@ -113,13 +113,13 @@ Use Recommended which is called PKCE, then click continue.
 Set the Redirect login.
 
 ```
-https://grafana.hungry-howard.com/login/generic_oauth
+https://grafana.domain.com/login/generic_oauth
 ```
 
 Set the Post logout.
 
 ```
-https://grafana.hungry-howard.com/logout
+https://grafana.domain.com/logout
 ```
 
 When completed click the *+* sign on the right of each URI. Click continue, then click create.
@@ -178,7 +178,7 @@ Fill in the settings from the example below.
 
 ```
 [server]
-root_url = https://grafana.hungry-howard.com
+root_url = https://grafana.domain.com
 
 [users]
 allow_sign_up = false
@@ -213,9 +213,9 @@ name_attribute_path = fullname
 Set the end points needed for Zitadel URI as shown below.
 
 ```
-auth_url =  https://zitadel-build.hungry-howard.com/oauth/v2/authorize
-token_url = https://zitadel-build.hungry-howard.com/oauth/v2/token
-api_url = https://zitadel-build.hungry-howard.com/oidc/v1/userinfo 
+auth_url =  https://zitadel-build.domain.com/oauth/v2/authorize
+token_url = https://zitadel-build.domain.com/oauth/v2/token
+api_url = https://zitadel-build.domain.com/oidc/v1/userinfo 
 use_pkce = true
 ```
 
