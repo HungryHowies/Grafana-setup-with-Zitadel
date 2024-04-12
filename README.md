@@ -1,6 +1,6 @@
 # Grafana Setup
 
-This step documentation is a basic installation/configurations for Grafana. It will show the configuration needed for a OIDC connection.
+This step documentation is a basic installation/configuration for Grafana. It will show the configuration needed for an OIDC connection.
 
 ## Prerequisite:
 * Ubuntu-22.0.4
@@ -81,32 +81,32 @@ server {
     }
 }
 ```
-Install certbot for lets encrypt.
+Install Certbot for lets encrypt.
 
 ```
 sudo apt install certbot python3-certbot-nginx
 ```
 
-Run certbot and fill in all the requirments needed.
+Run Certbot and fill in all the requirements needed.
 
 ```
 sudo certbot --nginx
 ```
 
-## Zitadel confgiuration
+## Zitadel configuration
 
-After the project is completed these settings will be used for Grafana's configuration file.
+After the project is completed, these settings will be used for Grafana's configuration file.
 
 Create a project called Grafana. Log into Zitadel and go to Projects then click *Create New Project*.
 Name it Grafana and save.
 
 ![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/3f007267-e6f8-49fa-b15a-bb9041f2be4a)
 
-Create an Application and name it Grafana. Next choose the type of Application called WEB OIDC, click continue.
+Create an application and name it Grafana. Next choose the type of Application called WEB OIDC, click continue.
 
 ![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/08124c77-d59a-414d-8aad-8903799e6389)
 
-Use Recommeneded which is called PKCE, then click continue.
+Use Recommended which is called PKCE, then click continue.
 
 ![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/1fc75b30-22b4-4fa8-aff5-a499944e4c9e)
 
@@ -149,7 +149,7 @@ Check the tic box called ```User Info inside ID Token```.
 
 ### The Grafana Project settings
 
-Check the tic box called "Assert Roles on Authentication"
+Check the tic box called "Assert Roles on Authentication.”
 
 ![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/33a741cd-9c91-4b81-9300-3f421eec7563)
 
@@ -195,13 +195,13 @@ name = zitadel
 allow_sign_up = true
 ```
 
-Paste the ClientID saved from earlier and past it nect to the setting *client_id*.
+Paste the ClientID saved from earlier and past it next to the setting *client_id*.
 
 ```
 client_id = 259048395543485137@grafana
 ```
 
-Enail & user attributes.
+Email & User attributes.
 
 ```
 scopes = openid email profile offline_access roles 
@@ -210,7 +210,7 @@ login_attribute_path = username
 name_attribute_path = fullname
 ```
 
-Set the end points need for Zitadel URI as shown below.
+Set the end points needed for Zitadel URI as shown below.
 
 ```
 auth_url =  https://zitadel-build.hungry-howard.com/oauth/v2/authorize
@@ -227,7 +227,7 @@ role_attribute_path = contains('"user-roles[*]"', 'monitoring') && 'Editor' || '
 Close and save file.
 
 
-Restart Grafana service
+Restart Grafana service.
 ```
 sudo systemctl restart grafana-server
 ```
