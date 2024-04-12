@@ -44,7 +44,10 @@ sudo systemctl start grafana-server
 ```
 sudo systemctl status grafana-server
 ```
-
+### Install Nginx
+```
+apt install nginx
+```
 
 Edit  nginx default site file 
 ```
@@ -64,9 +67,7 @@ server {
 }
 ```
 
-```
-apt install nginx
-```
+
 ```
 sudo apt install certbot python3-certbot-nginx
 ```
