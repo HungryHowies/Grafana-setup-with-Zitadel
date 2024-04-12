@@ -1,6 +1,6 @@
 # Grafana Setup
 
-This step documentation is a basic installation/configuration for Grafana. It will show the configuration needed for an OIDC connection.
+This step documentation is a basic installation/configuration for Grafana. It will show the configurations needed for SSO with OIDC connection.
 
 ## Prerequisite:
 * Ubuntu-22.0.4
