@@ -126,11 +126,13 @@ When completed click the *+* sign on the right of each URI. Click continue, then
 
 Results:
 
-![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/47e22a58-ddf3-4e6f-ac15-8dc2aa8b1a5f)
+![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/8e570e1f-f948-45ee-ae78-341a6cd8eafd)
+
 
 Copy the  ClientID and save it for Grafana configuration file.
 
-![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/3bcf9b82-254a-4002-a5f4-ff16dda22f41)
+![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/dc050703-7e19-4710-8110-d249d1198b50)
+
 
 
 Results:
@@ -237,7 +239,8 @@ Check status.
 ```
 sudo systemctl status  grafana-server
 ```
-![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/0e39cfa9-9180-448e-9f36-c859f75322a6)
+![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/39bde298-d935-43cd-a649-a8cf9eea6cac)
+
 
 
 
