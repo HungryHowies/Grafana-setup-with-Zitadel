@@ -205,7 +205,17 @@ For authorizations select the users needed.
 
 ![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/a34e5c6d-b2b8-423e-8cc7-0283974907d5)
 
+Restart Grafana service
+```
+sudo systemctl restart grafana-server
+```
 
+Check status.
+
+```
+sudo systemctl status  grafana-server
+```
+![image](https://github.com/HungryHowies/Grafana-setup-with-Zitadel/assets/22652276/0e39cfa9-9180-448e-9f36-c859f75322a6)
 
 
 
