@@ -179,7 +179,7 @@ use_pkce = true
 
 Set role for SSO user/s add this line to the Grafana Config file. This would make the user a admin.
 
-*NOTE:* Need to check Users section settings if it can tdo this also.
+Add this to the end of Grafana configuration file. It will make SSO users a *Admin*.
 ```
 role_attribute_path = contains('"user-roles[*]"', 'monitoring') && 'Editor' || 'admin'
 ```
